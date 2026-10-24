@@ -22,6 +22,14 @@ class CustomUser(AbstractUser):
 User = get_user_model()
 
 class Profile(models.Model):  
-    pass
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE, help_text="This field tells the id of he user whose profile is this")
+    country = models.CharField(max_length=50, default='Pakistan')
+    city = models.CharField(max_length=50)
+    contact = models.CharField(max_length=20, null = True, default="Not Given")
+    is_student = models.BooleanField(default=True)
+    # department_id = models.OneToOneField()
+        
+        
+    
 
 
