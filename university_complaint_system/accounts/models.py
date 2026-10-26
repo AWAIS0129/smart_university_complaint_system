@@ -1,7 +1,9 @@
 from django.db import models
 from .custom_user_manager import CustomUserModelManager
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
+from departments.models import Department, Role
 
 
 
@@ -19,15 +21,21 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return f"{self.first_name} {self.last_name}".strip() or self.email  
     
-User = get_user_model()
+User = settings.AUTH_USER_MODEL 
 
 class Profile(models.Model):  
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE, help_text="This field tells the id of he user whose profile is this")
+    
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     country = models.CharField(max_length=50, default='Pakistan')
     city = models.CharField(max_length=50)
-    contact = models.CharField(max_length=20, null = True, default="Not Given")
-    is_student = models.BooleanField(default=True)
-    # department_id = models.OneToOneField()
+    contact = models.CharField(max_length=20, blank=True)
+    is_student = models.BooleanField(default=False)
+    role= models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True, related_name="profiles")
+    
+    def __str__(self):
+        return f"Profile of {self.user}"
+
         
         
     
