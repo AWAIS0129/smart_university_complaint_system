@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'accounts',
     'departments',
+    'complain_manager',
 ]
 
 MIDDLEWARE = [
