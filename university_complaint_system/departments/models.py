@@ -13,8 +13,7 @@ class Department(models.Model):
     
 class Role(models.Model):
     designation = models.CharField(max_length = 50)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='roles')
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.user} is working as {self.designation}"
+        return f"{self.designation}"

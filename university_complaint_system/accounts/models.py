@@ -2,7 +2,6 @@ from django.db import models
 from .custom_user_manager import CustomUserModelManager
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import get_user_model
 from departments.models import Department, Role
 
 
@@ -31,6 +30,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=50)
     contact = models.CharField(max_length=20, blank=True)
     is_student = models.BooleanField(default=False)
+    department = models.ForeignKey(Department, models.PROTECT,  null=True , blank=True)
     role= models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True, related_name="profiles")
     
     def __str__(self):
