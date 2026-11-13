@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from .models import Profile
 
 User = get_user_model()
-class RegisterationSerializer(serializers.ModelSerializer):
+class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only = True,
         max_length = 20,
