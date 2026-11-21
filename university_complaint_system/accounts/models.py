@@ -11,6 +11,9 @@ from departments.models import Department, Role
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
+    country = models.CharField(max_length=50, default='Pakistan')
+    city = models.CharField(max_length=50)
+    contact = models.CharField(max_length=20, blank=True)
     
     USERNAME_FIELD = "email"             
     REQUIRED_FIELDS = [] 
@@ -26,10 +29,7 @@ class Profile(models.Model):
     
     
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    country = models.CharField(max_length=50, default='Pakistan')
-    city = models.CharField(max_length=50)
-    contact = models.CharField(max_length=20, blank=True)
-    is_student = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=True)
     department = models.ForeignKey(Department, models.PROTECT,  null=True , blank=True)
     role= models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True, related_name="profiles")
     
