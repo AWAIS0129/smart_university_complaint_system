@@ -5,11 +5,11 @@ from departments.models import Department, Role
 # Create your models here.
 
 class Complain(models.Model):
-    subject = models.TextField(max_length=200)
-    date_of_event = models.DateTimeField(blank=True)
+    subject = models.CharField(max_length=200)
+    date_of_event = models.DateTimeField(blank=True, null=True)
     complainant = models.ForeignKey(CustomUser, models.CASCADE, related_name='Complaint_filed_by')    
-    complainant_department = models.ForeignKey(Department, on_delete=models.CASCADE , related_name='complaint_from')
-    complainant_Role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='complainant_from')
+    complainant_department = models.ForeignKey(Department, on_delete=models.CASCADE , related_name='complaint_from', null=True)
+    complainant_role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='complainant_from', null=True)
     accused = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='complaint_against')
     accused_role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='complaint_against')
     accused_department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='complaint_against')
