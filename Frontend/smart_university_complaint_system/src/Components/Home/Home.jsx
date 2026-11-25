@@ -1,38 +1,15 @@
 // Home.jsx
+import { useState } from 'react'
 import LoginForm from './LoginForm'
 import SidePanel from './SidePanel'
 import UniversityImage from '../../assets/Home/University.jpg'
-import { useState } from 'react'
 import { login } from '../../services/authApi'
 
-const styles = {
-  page: {
-    display: 'flex',
-    minHeight: '100vh',
-    backgroundImage:`url(${UniversityImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    
-  },
-  side: {
-    flex: 2,
-  },
-  main: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-  },
-}
-
 const Home = () => {
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-
-   async function handleLogin(credentials) {
+  async function handleLogin(credentials) {
     setLoading(true)
     setError('')
     try {
@@ -47,15 +24,22 @@ const Home = () => {
   }
 
   return (
-    <div style={styles.page}>
-      <div style={styles.side}>
-        <SidePanel>
-          <h1>Smart University Complaint System</h1>
-          <p>Submit and track your complaints in one place.</p>
-        </SidePanel>
-      </div>
-      <div style={styles.main}>
-        <LoginForm onSubmit={handleLogin} loading={loading} error={error}  />
+    <div
+      className="flex min-h-screen bg-white/50 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${UniversityImage})` }}
+    >
+      <div className="absolute inset-0 bg-white/30" >
+        <div className="flex-[2]">
+          <SidePanel>
+            <h1 className="text-5xl text-rose-700">Smart University Complaint System</h1>
+            <p className="text-2xl text-rose-600">
+              Submit and track your complaints in one place.
+            </p>
+          </SidePanel>
+        </div>
+        <div className="flex flex-1 items-center justify-center">
+          <LoginForm onSubmit={handleLogin} loading={loading} error={error} />
+        </div>
       </div>
     </div>
   )
