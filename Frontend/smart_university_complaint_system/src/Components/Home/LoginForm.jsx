@@ -1,64 +1,8 @@
 // LoginForm.jsx
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
-
-
-
-const styles = {
-    form: {
-        width: '100%',
-        maxWidth: '400px',
-        padding: '24px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        backgroundColor:'#f2f2f2cf',
-        color: 'Black',
-        borderRadius: '12px',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.9)',
-    },
-    title: {
-        margin: 0,
-        fontSize: '28px',
-    },
-    field: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '6px',
-        
-    },
-    label: {
-        fontSize: '14px',
-        fontWeight: 600,
-    },
-    input: {
-        padding: '10px 12px',
-        fontSize: '16px',
-        border: '1px solid #ccc',
-        borderRadius: '6px',
-    },
-    button: {
-        padding: '12px',
-        fontSize: '16px',
-        fontWeight: 600,
-        color: 'white',
-        backgroundColor: '#1e40af',
-        border: 'none',
-        borderRadius: '6px',
-        cursor: 'pointer',
-    },
-    error: {
-    margin: 0,
-    padding: '10px 12px',
-    borderRadius: '6px',
-    backgroundColor: '#fee2e2',
-    color: '#991b1b',
-    fontSize: '14px',
-},
- 
-}
-
-const LoginForm = ({ title = 'Log in', onSubmit, loading = false, error = ''  }) => {
+const LoginForm = ({ title = 'Log in', onSubmit, loading = false, error = '' }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -67,40 +11,73 @@ const LoginForm = ({ title = 'Log in', onSubmit, loading = false, error = ''  })
         onSubmit?.({ email, password })
     }
 
+const navigate = useNavigate()
+const navigateToRegistration = ()=>{
+    navigate("/register")
+}
+
     return (
-    
-            <form style={styles.form} onSubmit={handleSubmit}>
-                <h2 style={styles.title}>{title}</h2>
-                     {error && <p style={styles.error}>{error}</p>}
-                <div style={styles.field}>
-                    <label style={styles.label} htmlFor="email">Email</label>
-                    <input
-                        style={styles.input}
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@university.edu"
-                        required
-                    />
-                </div>
+        <form
+            onSubmit={handleSubmit}
+            className="flex w-full max-w-[400px] flex-col gap-4 rounded-xl bg-[#f2f2f2]/80 p-6 text-black shadow-[0_10px_30px_rgba(0,0,0,0.9)]"
+        >
+            <h2 className="m-0 text-[28px]">{title}</h2>
 
-                <div style={styles.field}>
-                    <label style={styles.label} htmlFor="password">Password</label>
-                    <input
-                        style={styles.input}
-                        id="password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter your password"
-                        required
-                    />
-                </div>
+            {error && (
+                <p className="m-0 rounded-md bg-red-100 px-3 py-2.5 text-sm text-red-800">
+                    {error}
+                </p>
+            )}
 
-                <button style={styles.button} type="submit" disabled= {loading}> {loading ? 'Logging in...' : 'Log in'}</button>
-            </form>
-        
+            <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold" htmlFor="email">
+                    Email
+                </label>
+                <input
+                    className="rounded-md border border-gray-300 px-3 py-2.5 text-base"
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@university.edu"
+                    required
+                />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold" htmlFor="password">
+                    Password
+                </label>
+                <input
+                    className="rounded-md border border-gray-300 px-3 py-2.5 text-base"
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    required
+                />
+            </div>
+
+            <div className="flex w-full items-center justify-between gap-3">
+                <button
+                    className="flex-1 cursor-pointer rounded-md bg-blue-800 p-3 text-base font-semibold text-white hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-60"
+                    type="submit"
+                    disabled={loading}
+                >
+                    {loading ? 'Logging in...' : 'Log in'}
+                </button>
+
+                <button
+                    className="flex-1 cursor-pointer rounded-md bg-rose-800 p-3 text-base font-semibold text-white hover:bg-rose-900 disabled:cursor-not-allowed disabled:opacity-60"
+                    type="button"
+                    disabled={loading}
+                    onClick={navigateToRegistration}
+                >
+                    Register
+                </button>
+            </div>
+        </form>
     )
 }
 
