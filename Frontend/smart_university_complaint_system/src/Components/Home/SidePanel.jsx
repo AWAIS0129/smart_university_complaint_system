@@ -1,4 +1,3 @@
-// SidePanel.jsx
 const SidePanel = ({ image, children }) => {
   return (
     <aside
@@ -7,7 +6,7 @@ const SidePanel = ({ image, children }) => {
     >
       {children}
     </aside>
-  )
-}
+  );
+};
 
-export default SidePanel
+export default SidePanel;

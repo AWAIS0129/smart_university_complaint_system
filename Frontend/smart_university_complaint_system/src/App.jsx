@@ -1,4 +1,3 @@
-import React from 'react'
 import Home from './Components/Home/Home'
 import Registration from './Components/RegistrationPage/Registration'
 import {Routes, Route} from 'react-router'
