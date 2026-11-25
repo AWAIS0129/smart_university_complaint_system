@@ -5,39 +5,34 @@ from django.contrib.auth.models import AbstractUser
 from departments.models import Department, Role
 
 
-
-
 # Using custom user model to sign-in with email instead of Username
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
-    country = models.CharField(max_length=50, default='Pakistan')
+    country = models.CharField(max_length=50, default="Pakistan")
     city = models.CharField(max_length=50)
     contact = models.CharField(max_length=20, blank=True)
-    
-    USERNAME_FIELD = "email"             
-    REQUIRED_FIELDS = [] 
-    
-    objects = CustomUserModelManager()
-    
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}".strip() or self.email  
-    
-User = settings.AUTH_USER_MODEL 
 
-class Profile(models.Model):  
-    
-    
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserModelManager()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}".strip() or self.email
+
+
+User = settings.AUTH_USER_MODEL
+
+
+class Profile(models.Model):
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     is_student = models.BooleanField(default=True)
-    department = models.ForeignKey(Department, models.PROTECT,  null=True , blank=True)
-    role= models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True, related_name="profiles")
-    
+    department = models.ForeignKey(Department, models.PROTECT, null=True, blank=True)
+    role = models.ForeignKey(
+        Role, on_delete=models.SET_NULL, null=True, blank=True, related_name="profiles"
+    )
+
     def __str__(self):
         return f"Profile of {self.user}"
-
-        
-        
-    
-
-

@@ -7,14 +7,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0002_initial'),
-        ('departments', '0002_remove_role_user'),
+        ("accounts", "0002_initial"),
+        ("departments", "0002_remove_role_user"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='department',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='departments.department'),
+            model_name="profile",
+            name="department",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="departments.department",
+            ),
         ),
     ]

@@ -6,36 +6,36 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0004_alter_profile_is_student'),
+        ("accounts", "0004_alter_profile_is_student"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='profile',
-            name='city',
+            model_name="profile",
+            name="city",
         ),
         migrations.RemoveField(
-            model_name='profile',
-            name='contact',
+            model_name="profile",
+            name="contact",
         ),
         migrations.RemoveField(
-            model_name='profile',
-            name='country',
+            model_name="profile",
+            name="country",
         ),
         migrations.AddField(
-            model_name='customuser',
-            name='city',
-            field=models.CharField(default='Lahore', max_length=50),
+            model_name="customuser",
+            name="city",
+            field=models.CharField(default="Lahore", max_length=50),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='customuser',
-            name='contact',
+            model_name="customuser",
+            name="contact",
             field=models.CharField(blank=True, max_length=20),
         ),
         migrations.AddField(
-            model_name='customuser',
-            name='country',
-            field=models.CharField(default='Pakistan', max_length=50),
+            model_name="customuser",
+            name="country",
+            field=models.CharField(default="Pakistan", max_length=50),
         ),
     ]

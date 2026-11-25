@@ -1,6 +1,7 @@
 from .models import Complain
 from rest_framework import serializers
 
+
 class ComplainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Complain
@@ -12,5 +13,4 @@ class ComplainSerializer(serializers.ModelSerializer):
             "accused_department",
             "issue",
             "attachments",
-            
         ]

@@ -7,29 +7,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('complain_manager', '0001_initial'),
-        ('departments', '0002_remove_role_user'),
+        ("complain_manager", "0001_initial"),
+        ("departments", "0002_remove_role_user"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='complain',
-            name='complainant_Role',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='complainant_from', to='departments.role'),
+            model_name="complain",
+            name="complainant_Role",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="complainant_from",
+                to="departments.role",
+            ),
         ),
         migrations.AlterField(
-            model_name='complain',
-            name='complainant_department',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='complaint_from', to='departments.department'),
+            model_name="complain",
+            name="complainant_department",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="complaint_from",
+                to="departments.department",
+            ),
         ),
         migrations.AlterField(
-            model_name='complain',
-            name='date_of_event',
+            model_name="complain",
+            name="date_of_event",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='complain',
-            name='subject',
+            model_name="complain",
+            name="subject",
             field=models.CharField(max_length=200),
         ),
     ]
