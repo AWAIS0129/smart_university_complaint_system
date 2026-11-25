@@ -1,5 +1,5 @@
 // src/services/authApi.js
-const API_URL = import.meta.env.VITE_API_URL
+import { API_URL } from "./API_URL"
 
 export async function login({ email, password }) {
   const response = await fetch(`${API_URL}/accounts/auth/login`, {
