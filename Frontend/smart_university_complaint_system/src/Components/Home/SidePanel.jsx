@@ -1,17 +1,10 @@
 // SidePanel.jsx
-const styles = {
-  width: '100%',
-  height: '100%',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  padding: '24px',
-  color: 'white',
-}
-
 const SidePanel = ({ image, children }) => {
   return (
-    <aside style={{ ...styles, backgroundImage: `url(${image})` }}>
+    <aside
+      className="h-full w-full bg-cover bg-center bg-no-repeat p-6 text-white"
+      style={{ backgroundImage: image ? `url(${image})` : undefined }}
+    >
       {children}
     </aside>
   )
